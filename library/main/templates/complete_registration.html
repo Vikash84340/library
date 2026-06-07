@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Complete Registration</title>
+</head>
+<body style="text-align:center; font-family:Arial;">
+
+    <h2>📋 Complete Your Registration</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <p>
+            Father Name<br>
+            <input type="text" name="father_name" required>
+        </p>
+
+        <p>
+            Village<br>
+            <input type="text" name="village" required>
+        </p>
+
+        <p>
+            Post Office<br>
+            <input type="text" name="post" required>
+        </p>
+
+        <p>
+            Police Station<br>
+            <input type="text" name="police_station" required>
+        </p>
+
+        <p>
+            District<br>
+            <input type="text" name="district" required>
+        </p>
+
+        <p>
+            Pincode<br>
+            <input type="text" name="pincode" required>
+        </p>
+
+        <p>
+            Seat Number<br>
+            <input type="text" name="seat_number" required>
+        </p>
+
+        <button type="submit">Save & Continue</button>
+    </form>
+
+</body>
+</html>

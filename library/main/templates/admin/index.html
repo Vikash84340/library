@@ -1,0 +1,16 @@
+{% extends "admin/base_site.html" %}
+
+{% block extrastyle %}
+{{ block.super }}
+<style>
+    /* ❌ Hide Recent Actions completely */
+    .module.recent-actions,
+    #recent-actions-module {
+        display: none !important;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+{{ block.super }}
+{% endblock %}

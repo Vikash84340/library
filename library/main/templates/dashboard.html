@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TBH Library Dashboard</title>
+</head>
+
+<body style="font-family:Arial; background:#f5f5f5; padding:20px;">
+
+    <!-- 🔥 PAYMENT ALERT -->
+    {% if show_payment_alert %}
+    <div style="background:red;color:white;padding:10px;margin-bottom:15px;">
+        ⚠️ Please pay your monthly fee (Due between 1–3 date)
+        <br>
+        <a href="/payment/" style="color:yellow;">Pay Now</a>
+    </div>
+    {% endif %}
+
+    <h1>📚 Welcome {{ student.name }}</h1>
+
+    <hr>
+
+    <!-- 👤 STUDENT DETAILS -->
+    <h3>👤 Student Details</h3>
+
+    <p>👨 Father Name: {{ student.father_name }}</p>
+    <p>📱 Mobile: {{ student.mobile }}</p>
+    <p>🎂 DOB: {{ student.dob }}</p>
+    <p>🏠 Village: {{ student.village }}</p>
+    <p>📮 Post: {{ student.post }}</p>
+    <p>🚔 Police Station: {{ student.police_station }}</p>
+    <p>🏙️ District: {{ student.district }}</p>
+    <p>📍 Pincode: {{ student.pincode }}</p>
+    <p>💺 Seat Number: {{ student.seat_number }}</p>
+
+    <hr>
+
+    <!-- ⏱️ ATTENDANCE -->
+    <h3>⏱️ Attendance System</h3>
+
+    <a href="/check-in/"
+       style="padding:10px 20px; background:green; color:white; text-decoration:none; margin-right:10px;">
+       ✔ Check In
+    </a>
+
+    <a href="/check-out/"
+       style="padding:10px 20px; background:red; color:white; text-decoration:none;">
+       ✖ Check Out
+    </a>
+
+    <hr>
+
+    <h3>📊 Today Attendance</h3>
+
+    <p>
+        Check In:
+        {% if attendance.check_in %}
+            <b>{{ attendance.check_in|date:"d M Y, h:i A" }}</b>
+        {% else %}
+            Not marked
+        {% endif %}
+    </p>
+
+    <p>
+        Check Out:
+        {% if attendance.check_out %}
+            <b>{{ attendance.check_out|date:"d M Y, h:i A" }}</b>
+        {% else %}
+            Not marked
+        {% endif %}
+    </p>
+
+    <hr>
+
+    <!-- 📌 PROFILE STATUS -->
+    <h3>📌 Profile Status</h3>
+
+    {% if student.father_name %}
+        <p style="color:green;">✔ Profile Completed</p>
+    {% else %}
+        <p style="color:red;">❌ Profile Incomplete</p>
+        <a href="/complete-registration/">Complete Profile</a>
+    {% endif %}
+
+    <hr>
+
+    <!-- 💰 PAYMENT STATUS (FIXED LOGIC) -->
+    <h3>💰 Payment Status</h3>
+
+    {% if payment %}
+        {% if payment.status == "completed" %}
+            <p style="color:green;">✅ Payment Completed</p>
+        {% else %}
+            <p style="color:red;">❌ Payment Pending</p>
+        {% endif %}
+    {% else %}
+        <p style="color:red;">❌ No Payment Record Found</p>
+    {% endif %}
+
+    <p>Due Amount: ₹{{ student.payment_due }}</p>
+
+    <hr>
+
+    <!-- 📱 UPI PAYMENT -->
+    <h3>📱 Pay Using UPI Apps</h3>
+
+    <a href="upi://pay?pa=vikash@ybl&pn=TBH Library&am={{ student.payment_due }}&cu=INR">
+        <button style="padding:12px 20px; background:#1a73e8; color:white; border:none; border-radius:6px;">
+            💳 Pay with GPay / PhonePe / Paytm
+        </button>
+    </a>
+
+    <p style="font-size:12px;color:gray;">
+        Click करने पर UPI app open होगा
+    </p>
+
+    <h3>💳 Scan QR Code</h3>
+
+    {% if qr %}
+        <img src="data:image/png;base64,{{ qr }}" width="200px">
+        <p>Scan करके payment करें</p>
+    {% else %}
+        <p>QR available नहीं है</p>
+    {% endif %}
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Registration</title>
+</head>
+<body style="text-align:center; font-family:Arial;">
+
+<h2>➕ New Student Registration Form</h2>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <input type="text" name="name" placeholder="Student Name" required><br><br>
+
+    <input type="text" name="father_name" placeholder="Father Name" required><br><br>
+
+    <input type="text" name="mobile" placeholder="Mobile Number" required><br><br>
+
+    <input type="date" name="dob" required><br><br>
+
+    <input type="text" name="village" placeholder="Village" required><br><br>
+
+    <input type="text" name="post" placeholder="Post Office" required><br><br>
+
+    <input type="text" name="police_station" placeholder="Police Station" required><br><br>
+
+    <input type="text" name="district" placeholder="District" required><br><br>
+
+    <input type="text" name="pincode" placeholder="Pincode" required><br><br>
+
+    <input type="text" name="seat_number" placeholder="Seat Number" required><br><br>
+
+    <input type="number" name="payment_due" placeholder="Payment Due" value="0"><br><br>
+
+    <label>
+        Paid:
+        <input type="checkbox" name="is_paid">
+    </label><br><br>
+
+    <button type="submit">Save Student</button>
+</form>
+
+</body>
+</html>
